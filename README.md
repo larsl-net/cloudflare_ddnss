@@ -1,4 +1,4 @@
-# cloudflare_ddnss
+# Cloudflare ddnss
 This script updates the DNS A and AAAA records of specified domains and subdomains for different DNS zones.
 
 # Features
