@@ -1,7 +1,13 @@
 import requests
 import json
 import datetime
+import pathlib
+import os
 
+
+#Set Work Dir to Script Folder
+dir_path = pathlib.Path(__file__).parent.absolute()
+os.chdir(dir_path)
 
 with open("accounts.json") as accounts_file:
   accounts = json.load(accounts_file)
