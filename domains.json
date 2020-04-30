@@ -1,8 +1,6 @@
 {
 	"Demo Auth": {
 		"config": {
-			"email": "<your-email-adress",
-			"key": "<your-global-api-key<",
 			"token": "<your-api-token>",
 			"token_mode": true
 		},
@@ -10,6 +8,27 @@
 			"example.com": {
 				"0": "example.com",
 				"1": "www.example.com"
+			},
+			"example.de": {
+				"0": "example.de",
+				"1": "www.example.de"
+			}
+		}
+	},
+	"Demo Auth 2": {
+		"config": {
+			"email": "<other-email-adress>",
+			"key": "<other-global-api-key>",
+			"token_mode": false
+		},
+		"zones": {
+			"example.us": {
+				"0": "example.com",
+				"1": "www.example.com"
+			},
+			"example.gb": {
+				"0": "example.de",
+				"1": "www.example.de"
 			}
 		}
 	}
