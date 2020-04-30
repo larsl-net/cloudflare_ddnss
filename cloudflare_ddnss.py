@@ -5,12 +5,10 @@ import pathlib
 import os
 
 
-#Set Work Dir to Script Folder
+#Set Work Dir to Script Folder and Load Domains
 dir_path = pathlib.Path(__file__).parent.absolute()
 os.chdir(dir_path)
 
-with open("accounts.json") as accounts_file:
-  accounts = json.load(accounts_file)
 with open("domains.json") as domains_file:
   domains = json.load(domains_file)
 
@@ -26,35 +24,42 @@ logfile.write("Current IPv4: "+ip4+"\n")
 logfile.write("Current IPv6: "+ip6+"\n")
 
 
+for auth_name in domains.keys():
+  print("Email:" + auth_name)
+  logfile.write("Auth Name:" + auth_name+"\n")
 
-for auth_email in domains.keys():
-  print("Email:" + auth_email)
-  logfile.write("Email:" + auth_email+"\n")
-  for zone in domains[auth_email].keys():
+  #Set Cloudflare API Settings
+  url = 'https://api.cloudflare.com/client/v4/'
+  if domains[auth_name]['config']['token_mode']:
+    headers = {
+      'Authorization': 'Bearer '+ domains[auth_name]['config']['token'],
+      'Content-Type': 'application/json'
+    }
+  else:
+    headers = {
+      'X-Auth-Email': domains[auth_name]['config']['email'],
+      'X-Auth-Key': domains[auth_name]['config']['key'],
+      'Content-Type': 'application/json'
+    }
+
+
+  for zone in domains[auth_name]['zones'].keys():
     print("Zone: " + zone)
     logfile.write("Zone: " + zone+"\n")
-    for record in domains[auth_email][zone].values():
+    for record in domains[auth_name]['zones'][zone].values():
       print("Record:" + record)
       logfile.write("Record:" + record+"\n")
-
-
-      #Set Cloudflare API Settings
-      url = 'https://api.cloudflare.com/client/v4/'
-      headers = {
-          'X-Auth-Email': auth_email,
-          'X-Auth-Key': accounts[auth_email],
-          'Content-Type': 'application/json',
-      }
 
 
       #Get Zone ID
       zone_id = requests.get(url=url+'zones', headers=headers, params={'name':zone}).json()['result'][0]['id']
 
-
       #Get Record
       record4 = requests.get(url=url+'zones/'+zone_id+'/dns_records', headers=headers, params={'name':record, 'type': 'A'}).json()['result'][0]
       record6 = requests.get(url=url+'zones/'+zone_id+'/dns_records', headers=headers, params={'name':record, 'type': 'AAAA'}).json()['result'][0]
 
+
+      #Update Records if IP is changed
       if ip4 != record4['content']:
         print("IPv4 will be updated")
         logfile.write("IPv4 will be updated"+"\n")
