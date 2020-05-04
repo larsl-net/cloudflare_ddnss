@@ -141,6 +141,49 @@ Enter your Domains under zones with sub entry for the zone in ther the Doamin is
 	}
 }
 ```
+# Options
+
+You can set preferences for each auth block and record.
+
+* To set TTL you must add
+```
+"ttl": <time>
+```
+(default: 1 = auto)
+
+* To set Proxy you must add
+```
+"proxied": true or false
+```
+(default: true)
+
+* To set IPv4 you must add
+```
+"ip4": true or false
+```
+(default: true)
+
+* To set IPv6 you must add
+```
+"ip6": true or false
+```
+(default: true)
+
+* To set Force Settings update to Cloudflare you must add
+```
+"foce_settingsip6": true or false
+```
+(default: true)
+
+
+to the config section or to the record in the domains.json file
+
+*If several records with the same name exist, the record id can be passed in the record entry.
+```
+"record4_id": "<Record-IPv4-ID>",
+"record6_id": "<Record-IPv6-ID>"
+```
+
 
 # Schedule Script Execution
 

@@ -2,16 +2,53 @@
 	"Demo Auth": {
 		"config": {
 			"token": "<your-api-token>",
-			"token_mode": true
+			"token_mode": true,
+			"ttl": 1,
+			"proxied": true,
+			"ip4": true,
+			"ip6": true,
+			"foce_settings": true
 		},
 		"zones": {
 			"example.com": {
-				"0": "example.com",
-				"1": "www.example.com"
+				"example.com": {
+					"ttl": 1,
+					"proxied": true,
+					"ip4": true,
+					"ip6": true,
+					"foce_settings": true,
+					"record4_id": "<Record-IPv4-ID>",
+					"record6_id": "<Record-IPv6-ID>"
+				},
+				"www.example.com": {
+					"ttl": 1,
+					"proxied": true,
+					"ip4": true,
+					"ip6": true,
+					"foce_settings": true,
+					"record4_id": "<Record-IPv4-ID>",
+					"record6_id": "<Record-IPv6-ID>"
+				}
 			},
 			"example.de": {
-				"0": "example.de",
-				"1": "www.example.de"
+				"example.de": {
+					"ttl": 1,
+					"proxied": true,
+					"ip4": true,
+					"ip6": true,
+					"foce_settings": true,
+					"record4_id": "<Record-IPv4-ID>",
+					"record6_id": "<Record-IPv6-ID>"
+				},
+				"www.example.de": {
+					"ttl": 1,
+					"proxied": true,
+					"ip4": true,
+					"ip6": true,
+					"foce_settings": true,
+					"record4_id": "<Record-IPv4-ID>",
+					"record6_id": "<Record-IPv6-ID>"
+				}
 			}
 		}
 	},
@@ -19,16 +56,53 @@
 		"config": {
 			"email": "<other-email-adress>",
 			"key": "<other-global-api-key>",
-			"token_mode": false
+			"token_mode": false,
+			"ttl": 1,
+			"proxied": true,
+			"ip4": true,
+			"ip6": true,
+			"foce_settings": true
 		},
 		"zones": {
-			"example.us": {
-				"0": "example.com",
-				"1": "www.example.com"
+			"example.com": {
+				"example.com": {
+					"ttl": 1,
+					"proxied": true,
+					"ip4": true,
+					"ip6": true,
+					"foce_settings": true,
+					"record4_id": "<Record-IPv4-ID>",
+					"record6_id": "<Record-IPv6-ID>"
+				},
+				"www.example.com": {
+					"ttl": 1,
+					"proxied": true,
+					"ip4": true,
+					"ip6": true,
+					"foce_settings": true,
+					"record4_id": "<Record-IPv4-ID>",
+					"record6_id": "<Record-IPv6-ID>"
+				}
 			},
-			"example.gb": {
-				"0": "example.de",
-				"1": "www.example.de"
+			"example.de": {
+				"example.de": {
+					"ttl": 1,
+					"proxied": true,
+					"ip4": true,
+					"ip6": true,
+					"foce_settings": true,
+					"record4_id": "<Record-IPv4-ID>",
+					"record6_id": "<Record-IPv6-ID>"
+				},
+				"www.example.de": {
+					"ttl": 1,
+					"proxied": true,
+					"ip4": true,
+					"ip6": true,
+					"foce_settings": true,
+					"record4_id": "<Record-IPv4-ID>",
+					"record6_id": "<Record-IPv6-ID>"
+				}
 			}
 		}
 	}
